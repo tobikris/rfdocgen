@@ -1,0 +1,2 @@
+recursive-include rfdocgen/server/templates *
+recursive-include rfdocgen/server/static *
