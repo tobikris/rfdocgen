@@ -1,0 +1,527 @@
+/* Icons are from Open Iconic <https://useiconic.com/open/>.
+   Licensed under the MIT License. */
+/* Containers */
+#testdoc-insert .suite, #testdoc-insert .test, #testdoc-insert #errors {
+    border: 1px solid #ccc;
+    padding: 0.3em 0.2em;
+    margin: 0.2em 0;
+}
+#testdoc-insert .test {
+    border-style: dashed;
+}
+#testdoc-insert #errors, #testdoc-insert .messages, #testdoc-insert .metadata {
+    width: 100%;
+    border-spacing: 0;
+}
+#testdoc-insert .children {
+    display: none;
+    margin-left: 1.4em;
+}
+#testdoc-insert .suite, #testdoc-insert .test, #testdoc-insert .keyword {
+    margin-left: -0.2em;
+}
+#testdoc-insert #s1, #testdoc-insert .suite > .children > .keyword {
+    margin-left: 0;
+}
+/* Suite, test and kw headers */
+#testdoc-insert .element-header {
+    border: 1px solid transparent;
+    border-radius: 2px;
+    position: relative;
+}
+#testdoc-insert .element-header:hover {
+    cursor: pointer;
+    background-color: #eee;
+    border-color: #ccc;
+}
+#testdoc-insert .element-header-toggle {
+    position: absolute;
+    left: 3px;
+    top: 5px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAQAAABKxSfDAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfeCR0JChSkZz20AAAAGklEQVQI12NgQAKMDKzInP8IDhOqMk4G7AAANQwBE427PYUAAAAASUVORK5CYII=);
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPgogIDxwYXRoIGQ9Ik0wIDB2Mmg4di0yaC04eiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAzKSIgLz4KPC9zdmc+), none;
+    height: 10px;
+    width: 10px;
+    background-size: 6px 6px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+#testdoc-insert .closed > .element-header-toggle {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAQAAABKxSfDAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfeCR0JCDHdVYtxAAAAM0lEQVQI103MMQqAMBQFwVHyITaB3P+W1sKzSBC3mW6hRFw0pUB5DvF1bu9FN0RM3X/wAk98CUnvFTakAAAAAElFTkSuQmCC);
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPgogIDxwYXRoIGQ9Ik0zIDB2M2gtM3YyaDN2M2gydi0zaDN2LTJoLTN2LTNoLTJ6IiAvPgo8L3N2Zz4=), none;
+}
+#testdoc-insert .element-header:hover > .element-header-toggle {
+    background-color: #ccc;
+}
+#testdoc-insert .element-header-right:hover ~ .element-header-toggle {
+    background-color: transparent;
+}
+#testdoc-insert .element-header-left {
+    padding: 3px 80px 3px 20px;
+}
+#testdoc-insert .element-header-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 3px;
+    cursor: default;
+}
+#testdoc-insert .name {
+    font-weight: bold;
+}
+#testdoc-insert .elapsed {
+    float: right;
+    color: #999;
+    padding-left: 1em;
+}
+#testdoc-insert .link {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAHlJREFUGJVtzrEJwmAQBtCn6ASuIKTIBhY2gmghBiJYB1udwk10B8FJbKMBcQFbtbkfJHrVwfu+4/idJR64Y9H7E3higj5O3S8Y44ApLnjhnXCNGhV2yNGggDJwiC02gavUbpDFvscRo4QdXOMKDHBufz3HLYKzNn4AbSkV3fncGQYAAAAASUVORK5CYII=);
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPgogIDxwYXRoIGQ9Ik01Ljg4LjAzYy0uMTguMDEtLjM2LjAzLS41My4wOS0uMjcuMS0uNTMuMjUtLjc1LjQ3YS41LjUgMCAxIDAgLjY5LjY5Yy4xMS0uMTEuMjQtLjE3LjM4LS4yMi4zNS0uMTIuNzgtLjA3IDEuMDYuMjIuMzkuMzkuMzkgMS4wNCAwIDEuNDRsLTEuNSAxLjVjLS40NC40NC0uOC40OC0xLjA2LjQ3LS4yNi0uMDEtLjQxLS4xMy0uNDEtLjEzYS41LjUgMCAxIDAtLjUuODhzLjM0LjIyLjg0LjI1Yy41LjAzIDEuMi0uMTYgMS44MS0uNzhsMS41LTEuNWMuNzgtLjc4Ljc4LTIuMDQgMC0yLjgxLS4yOC0uMjgtLjYxLS40NS0uOTctLjUzLS4xOC0uMDQtLjM4LS4wNC0uNTYtLjAzem0tMiAyLjMxYy0uNS0uMDItMS4xOS4xNS0xLjc4Ljc1bC0xLjUgMS41Yy0uNzguNzgtLjc4IDIuMDQgMCAyLjgxLjU2LjU2IDEuMzYuNzIgMi4wNi40Ny4yNy0uMS41My0uMjUuNzUtLjQ3YS41LjUgMCAxIDAtLjY5LS42OWMtLjExLjExLS4yNC4xNy0uMzguMjItLjM1LjEyLS43OC4wNy0xLjA2LS4yMi0uMzktLjM5LS4zOS0xLjA0IDAtMS40NGwxLjUtMS41Yy40LS40Ljc1LS40NSAxLjAzLS40NC4yOC4wMS40Ny4wOS40Ny4wOWEuNS41IDAgMSAwIC40NC0uODhzLS4zNC0uMi0uODQtLjIyeiIKICAvPgo8L3N2Zz4=), none;
+}
+#testdoc-insert .expand {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAADtJREFUGJVjYCACKDAwMByA0ljFDjAwMPxnYGB4ABVQgLL/Q+VQBB6gseGmIivCkERXhFUSWRFOSawAAEl7E3uv1iMcAAAAAElFTkSuQmCC);
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPgogIDxwYXRoIGQ9Ik0xLjUgMGwtMS41IDEuNSA0IDQgNC00LTEuNS0xLjUtMi41IDIuNS0yLjUtMi41eiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAxKSIgLz4KPC9zdmc+), none;
+}
+#testdoc-insert .collapse {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAC5JREFUGJVjYCARNEAxTsn/UIyhCFkSQxG6ThQ+C5IpjWhG1yNb4YDFTdjEMAEACi8Q++9Y9TAAAAAASUVORK5CYII=);
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPgogIDxwYXRoIGQ9Ik00IDBsLTQgNCAxLjUgMS41IDIuNS0yLjUgMi41IDIuNSAxLjUtMS41LTQtNHoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgMSkiIC8+Cjwvc3ZnPg==), none;
+}
+#testdoc-insert .expand, #testdoc-insert .collapse, #testdoc-insert .link {
+    float: left;
+    display: block;
+    visibility: hidden;
+    margin: 0 4px;
+    height: 14px;
+    width: 14px;
+    background-size: 8px 8px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+#testdoc-insert .link {
+    background-size: 10px 10px;
+}
+#testdoc-insert .element-header:hover a {
+    visibility: visible;
+}
+#testdoc-insert .expand:hover, #testdoc-insert .collapse:hover, #testdoc-insert .link:hover {
+    background-color: #ccc;
+}
+/* Messages and errors */
+#testdoc-insert .messages .time, #testdoc-insert .messages .message {
+    font-family: monospace;
+    font-size: 1.1em;
+}
+#testdoc-insert #errors .message {
+    font-family: monospace;
+    font-size: 1.2em;
+}
+#testdoc-insert .message-row {
+    height: 20px;
+}
+#testdoc-insert .time {
+    width: 7.5em;
+}
+#testdoc-insert .error-time {
+    width: 11em;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+#testdoc-insert .level {
+    width: 5em;
+    text-align: center;
+}
+#testdoc-insert .select-message {
+    width: 24px;
+}
+#testdoc-insert .select-message > div {
+    float: right;
+    margin-right: 2px;
+    height: 16px;
+    width: 16px;
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#testdoc-insert .message-row:hover .select-message div {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAQAAAD8fJRsAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfeCR0MOzhWKZQOAAAASUlEQVQY032PsRHAIAwDX9BkicD+W8UMEqegAQJWKZ/+3sLZJhFGQEZzNaIa4ibh66En867VNaIeoP5WppNuIGoAlOm3g5VC1AdYeQv1BZPRSgAAAABJRU5ErkJggg==);
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPgogIDxwYXRoIGQ9Ik0wIDB2MWg4di0xaC04em0wIDJ2MWg2di0xaC02em0wIDJ2MWg4di0xaC04em0wIDJ2MWg2di0xaC02eiIgLz4KPC9zdmc+), none;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+#testdoc-insert .select-message:hover div {
+    background-color: #ccc;
+    cursor: pointer;
+}
+/* Message tables - these MUST NOT be combined together because otherwise
+   dynamically altering them based on visible log level is not possible. */
+#testdoc-insert .trace-message {
+    display: table;
+}
+#testdoc-insert .debug-message {
+    display: table;
+}
+/* Metadata */
+#testdoc-insert .metadata th {
+    width: 12.5em;
+    text-align: left;
+    white-space: nowrap;
+    padding: 0;
+}
+#testdoc-insert .metadata td {
+    padding: 0.2em;
+}
+#testdoc-insert .keyword-metadata {
+    font-size: 0.9em;
+}
+/* Custom styles for statistics */
+#testdoc-insert #total-stats tr:hover, #testdoc-insert #tag-stats tr:hover {
+    cursor: default;
+}
+/* Generic and misc styles */
+#testdoc-insert body {
+    font-family: Helvetica, sans-serif;
+    font-size: 0.8em;
+    color: black;
+    padding: 6px;
+    background: white;
+}
+#testdoc-insert table {
+    table-layout: fixed;
+    word-wrap: break-word;
+    empty-cells: show;
+    font-size: 1em;
+}
+#testdoc-insert th, #testdoc-insert td {
+    vertical-align: top;
+}
+#testdoc-insert br {
+    mso-data-placement: same-cell; /* maintain line breaks in Excel */
+}
+#testdoc-insert hr {
+    background: #ccc;
+    height: 1px;
+    border: 0;
+}
+#testdoc-insert a, #testdoc-insert a:link, #testdoc-insert a:visited {
+    text-decoration: none;
+    color: #15c;
+}
+#testdoc-insert a > img {
+    border: 1px solid #15c !important;
+}
+#testdoc-insert a:hover, #testdoc-insert a:active {
+    text-decoration: underline;
+    color: #61c;
+}
+#testdoc-insert .parent-name {
+    font-size: 0.7em;
+    letter-spacing: -0.07em;
+}
+#testdoc-insert .message {
+    white-space: pre-wrap;
+}
+/* Headers */
+#testdoc-insert #header {
+    width: 65em;
+    height: 3em;
+    margin: 6px 0;
+}
+#testdoc-insert h1 {
+    float: left;
+    margin: 0 0 0.5em 0;
+    width: 75%;
+}
+#testdoc-insert h2 {
+    clear: left;
+}
+#testdoc-insert #generated {
+    float: right;
+    text-align: right;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+/* Documentation headers */
+#testdoc-insert .doc > h2 {
+    font-size: 1.2em;
+}
+#testdoc-insert .doc > h3 {
+    font-size: 1.1em;
+}
+#testdoc-insert .doc > h4 {
+    font-size: 1.0em;
+}
+/* Status text colors -- !important allows using them in links */
+#testdoc-insert .fail {
+    color: #f33 !important;
+    font-weight: bold;
+}
+#testdoc-insert .pass {
+    color: #393 !important;
+}
+#testdoc-insert .label {
+    padding: 2px 5px;
+    font-size: 0.75em;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    color: black;
+    background-color: #ddd;
+    border-radius: 3px;
+}
+#testdoc-insert .label.debug, #testdoc-insert .label.trace, #testdoc-insert .label.error, #testdoc-insert .label.keyword {
+    letter-spacing: 0;
+}
+#testdoc-insert .label.error, #testdoc-insert .label.fail, #testdoc-insert .label.pass, #testdoc-insert .label.warn {
+    color: #fff !important;
+    font-weight: bold;
+}
+#testdoc-insert .label.error, #testdoc-insert .label.fail {
+    background-color: #d9534f;
+}
+#testdoc-insert .label.pass {
+    background-color: #5cb85c;
+}
+#testdoc-insert .label.warn {
+    background-color: #ec971f;
+}
+/* Top right header */
+#testdoc-insert #top-right-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    width: 12em;
+    text-align: center;
+}
+#testdoc-insert #report-or-log-link a {
+    display: block;
+    background: black;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 0.3em 0;
+    border-bottom-left-radius: 4px;
+}
+#testdoc-insert #report-or-log-link a:hover {
+    color: #ddd;
+}
+#testdoc-insert #log-level-selector {
+    padding: 0.3em 0;
+    font-size: 0.9em;
+    border-bottom-left-radius: 4px;
+    background: #ddd;
+}
+/* Statistics table */
+#testdoc-insert .statistics {
+    width: 65em;
+    border-collapse: collapse;
+    empty-cells: show;
+    margin-bottom: 1em;
+}
+#testdoc-insert .statistics tr:hover {
+    background: #f4f4f4;
+    cursor: pointer;
+}
+#testdoc-insert .statistics th, #testdoc-insert .statistics td {
+    border: 1px solid #ccc;
+    padding: 0.1em 0.3em;
+}
+#testdoc-insert .statistics th {
+    background-color: #ddd;
+    padding: 0.2em 0.3em;
+}
+#testdoc-insert .statistics td {
+    vertical-align: middle;
+}
+#testdoc-insert .stats-col-stat {
+    width: 4.5em;
+    text-align: center;
+}
+#testdoc-insert .stats-col-elapsed {
+    width: 5.5em;
+    text-align: center;
+}
+#testdoc-insert .stats-col-graph {
+    width: 9em;
+}
+#testdoc-insert th.stats-col-graph:hover {
+    cursor: default;
+}
+#testdoc-insert .stat-name {
+    float: left;
+}
+#testdoc-insert .stat-name a, #testdoc-insert .stat-name span {
+    font-weight: bold;
+}
+#testdoc-insert .tag-links {
+    font-size: 0.9em;
+    float: right;
+    margin-top: 0.05em;
+}
+#testdoc-insert .tag-links span {
+    margin-left: 0.2em;
+}
+/* Statistics graph */
+#testdoc-insert .graph, #testdoc-insert .empty-graph {
+    border: 1px solid #ccc;
+    width: auto;
+    height: 7px;
+    padding: 0;
+    background: #f33;
+}
+#testdoc-insert .empty-graph {
+    background: #eee;
+}
+#testdoc-insert .pass-bar, #testdoc-insert .fail-bar {
+    float: left;
+    height: 100%;
+}
+#testdoc-insert .pass-bar {
+    background: #1d4;
+}
+/* Tablesorter - adapted from provided Blue Skin */
+#testdoc-insert .tablesorter-header {
+    background-image: url(data:image/gif;base64,R0lGODlhCwAJAIAAAH9/fwAAACH5BAEAAAEALAAAAAALAAkAAAIRjAOnBr3cnIr0WUjTrC9e9BQAOw==);
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+#testdoc-insert .tablesorter-header:hover {
+    background-color: #ccc;
+}
+#testdoc-insert .tablesorter-headerAsc {
+    background-image: url(data:image/gif;base64,R0lGODlhCwAJAKEAAAAAAH9/fwAAAAAAACH5BAEAAAIALAAAAAALAAkAAAIUlBWnFr3cnIr0WQOyBmvzp13CpxQAOw==);
+    background-color: #ccc !important;
+}
+#testdoc-insert .tablesorter-headerDesc {
+    background-image: url(data:image/gif;base64,R0lGODlhCwAJAKEAAAAAAH9/fwAAAAAAACH5BAEAAAIALAAAAAALAAkAAAIUlAWnBr3cnIr0WROyDmvzp13CpxQAOw==);
+    background-color: #ccc !important;
+}
+#testdoc-insert .sorter-false {
+    background-image: none;
+    cursor: default;
+}
+#testdoc-insert .sorter-false:hover {
+    background-color: #ddd;
+}
+#testdoc-insert body {
+    background: white !important;
+    padding: 0;
+    font-size: 8pt;
+}
+#testdoc-insert a:link, #testdoc-insert a:visited {
+    color: black;
+}
+#testdoc-insert #header {
+    width: auto;
+}
+#testdoc-insert .details, #testdoc-insert .statistics {
+    width: 100%;
+}
+#generated-ago, #top-right-header, #normal-selector, #search-buttons,
+#testdoc-insert .folding-button, #testdoc-insert .expand, #testdoc-insert .hidden, #testdoc-insert .details-col-toggle {
+    display: none;
+}
+#testdoc-insert .element-header-text, #testdoc-insert .children {
+    margin: 0;
+}
+#testdoc-insert #test-details {
+    border-collapse: collapse;
+    table-layout: auto;
+}
+#testdoc-insert #test-details th, #testdoc-insert #test-details td {
+    border: 1px solid black;
+}
+#testdoc-insert .details-col-header {
+    padding: 0;
+}
+#testdoc-insert #print-selector {
+    display: table-cell;
+}
+#testdoc-insert .tablesorter-header {
+    background-image: none;
+    background: #ddd !important;
+}
+#testdoc-insert .doc > * {
+    margin: 0.7em 1em 0.1em 1em;
+    padding: 0;
+}
+#testdoc-insert .doc > p, #testdoc-insert .doc > h1, #testdoc-insert .doc > h2, #testdoc-insert .doc > h3, #testdoc-insert .doc > h4 {
+    margin: 0.7em 0 0.1em 0;
+}
+#testdoc-insert .doc > *:first-child {
+    margin-top: 0.1em;
+}
+#testdoc-insert .doc table {
+    border: 1px solid #ccc;
+    background: transparent;
+    border-collapse: collapse;
+    empty-cells: show;
+    font-size: 0.9em;
+}
+#testdoc-insert .doc table th, #testdoc-insert .doc table td {
+    border: 1px solid #ccc;
+    background: transparent;
+    padding: 0.1em 0.3em;
+    height: 1.2em;
+}
+#testdoc-insert .doc table th {
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+#testdoc-insert .doc pre {
+    font-size: 1.1em;
+    letter-spacing: 0.05em;
+    background: #f4f4f4;
+}
+#testdoc-insert .doc code {
+    padding: 0 0.2em;
+    letter-spacing: 0.05em;
+    background: #eee;
+}
+#testdoc-insert .doc li {
+    list-style-position: inside;
+    list-style-type: square;
+}
+#testdoc-insert .doc img {
+    border: 1px solid #ccc;
+}
+#testdoc-insert .doc hr {
+    background: #ccc;
+    height: 1px;
+    border: 0;
+}
+#testdoc-insert #javascript-disabled {
+    width: 600px;
+    margin: 100px auto 0 auto;
+    padding: 20px;
+    color: black;
+    border: 1px solid #ccc;
+    background: #eee;
+}
+#testdoc-insert #javascript-disabled h1 {
+    width: 100%;
+    float: none;
+}
+#testdoc-insert #javascript-disabled ul {
+    font-size: 1.2em;
+}
+#testdoc-insert #javascript-disabled li {
+    margin: 0.5em 0;
+}
+#testdoc-insert #javascript-disabled b {
+    font-style: italic;
+}
+#testdoc-insert #header {
+    width: auto;
+    margin-bottom: 2em;
+}
+#testdoc-insert .keyword .element-header {
+    cursor: auto;
+    background-image: none;
+    padding-left: 0.3em;
+}

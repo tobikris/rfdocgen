@@ -1,0 +1,296 @@
+#libdoc-insert {
+  font-size: 1em;
+  line-height: 1.2em;
+}
+
+#libdoc-insert .metadata th {
+    text-align: left;
+    padding-right: 1em;
+}
+#libdoc-insert a.name, #libdoc-insert span.name {
+    font-style: italic;
+}
+#libdoc-insert a, #libdoc-insert a:link, #libdoc-insert a:visited {
+    color: #c30;
+}
+#libdoc-insert a img {
+    border: 1px solid #c30 !important;
+}
+#libdoc-insert a:hover, #libdoc-insert a:active {
+    text-decoration: underline;
+    color: black;
+}
+#libdoc-insert a:hover {
+    text-decoration: underline !important;
+}
+#libdoc-insert .shortcuts {
+    margin: 1em 0;
+    font-size: 0.9em;
+}
+#libdoc-insert .shortcuts a {
+    display: inline-block;
+    text-decoration: none;
+    white-space: nowrap;
+    color: black;
+}
+#libdoc-insert .shortcuts a::first-letter {
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+#libdoc-insert .normal-first-letter::first-letter {
+    font-weight: normal !important;
+    letter-spacing: 0 !important;
+}
+#libdoc-insert .keywords {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    empty-cells: show;
+    margin: 0.3em 0;
+    width: 100%;
+}
+#libdoc-insert .keywords th, #libdoc-insert .keywords td {
+    border: 1px solid #ccc;
+    padding: 0.2em;
+    vertical-align: top;
+}
+#libdoc-insert .keywords th {
+    background: #ddd;
+    color: black;
+}
+#libdoc-insert .kw, #libdoc-insert .args, #libdoc-insert .tags {
+    min-width: 100px;
+    max-width: 20%;
+}
+#libdoc-insert td.kw a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+}
+#libdoc-insert .args span {
+    font-style: italic;
+    padding: 0 0.1em;
+}
+#libdoc-insert .tags a {
+    color: inherit;
+    text-decoration: none;
+    padding: 0 0.1em;
+}
+#libdoc-insert .footer {
+    font-size: 0.9em;
+}
+/* Docs originating from HTML and reST are wrapped to divs. */
+#libdoc-insert .doc div > *:first-child {
+    margin-top: 0;
+}
+#libdoc-insert .doc div > *:last-child {    /* Does not work with IE8. */
+    margin-bottom: 0;
+}
+#libdoc-insert #search, #open-search {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    z-index: 1000;
+}
+#libdoc-insert #search {
+    width: 30em;
+    display: none;
+}
+#libdoc-insert #open-search {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAY5JREFUSImt1LtrFGEUBfCfURsFHwEr29UNkS3MFklrQK0EIYUk/5IQ0FSmCCKW1mpAommToCKoK+lsLUKeSFbXFLuT3B13Hjt64INvOPeec+fOnUs2mpjHBrbRwQE+YQFTObm5qGMZf0qct7gxjPgM9kqKJ+cAs2XFf4fEX3iOe7iKsxjFHTxFO8R2ikzqqcq/oVFQUANfUm8ynhUce97qVVoGo/gaclcGBTVDQDuvigw09Lfrr+maD+TSkOIJngWNx2lyI5C3KxrcDRof0+R2IC9XNLgSNPbTZDKa7YricFr/v3EqIUZ0xxPO4FxFg0vhnoz7scFmICcqGjTDvRWJEayG57mKBg/C/U2anHDSu5+oDSlex6GTlTE2KOhVMPmACyXFL+qOZZL7Xf/3OMY17KZMrheI13px6e26nmVyX3eDxnYt4lav0qTiaTzp8VkrPNdkNyOpkyM4lEkNL0uK/CjgXw8ySHATD7GGLd0/fgfv8QiTOI93BSb/jCKT/4Isk1ZOTiWTF0H8M8aPANvFyARlADGFAAAAAElFTkSuQmCC);
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiIHZpZXdCb3g9IjAgMCA4IDgiPgogIDxwYXRoIGQ9Ik0zLjUgMGMtMS45MyAwLTMuNSAxLjU3LTMuNSAzLjVzMS41NyAzLjUgMy41IDMuNWMuNTkgMCAxLjE3LS4xNCAxLjY2LS40MWExIDEgMCAwIDAgLjEzLjEzbDEgMWExLjAyIDEuMDIgMCAxIDAgMS40NC0xLjQ0bC0xLTFhMSAxIDAgMCAwLS4xNi0uMTNjLjI3LS40OS40NC0xLjA2LjQ0LTEuNjYgMC0xLjkzLTEuNTctMy41LTMuNS0zLjV6bTAgMWMxLjM5IDAgMi41IDEuMTEgMi41IDIuNSAwIC42Ni0uMjQgMS4yNy0uNjYgMS43Mi0uMDEuMDEtLjAyLjAyLS4wMy4wM2ExIDEgMCAwIDAtLjEzLjEzYy0uNDQuNC0xLjA0LjYzLTEuNjkuNjMtMS4zOSAwLTIuNS0xLjExLTIuNS0yLjVzMS4xMS0yLjUgMi41LTIuNXoiCiAgLz4KPC9zdmc+), none;
+    background-size: 24px 24px;
+}
+#libdoc-insert #open-search:hover {
+    background-color: #ccc;
+}
+#libdoc-insert fieldset {
+    background: white;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 8px;
+}
+#libdoc-insert fieldset fieldset {
+    border: 1px solid #ccc;
+    margin: 4px 0;
+}
+#libdoc-insert #search-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+#libdoc-insert #search-string {
+    box-sizing: border-box;
+    width: 100%;
+}
+#libdoc-insert #hide-unmatched {
+    margin: 0.5em 0 0 1em;
+}
+#libdoc-insert #search-buttons {
+    float: right;
+}
+#libdoc-insert .highlight {
+    background: yellow;
+}
+#libdoc-insert .no-match {
+    color: gray !important;
+}
+#libdoc-insert tr.no-match.hide-unmatched {
+    display: none;
+}
+#libdoc-insert .code .hll { background-color: #ffffcc }
+#libdoc-insert .code  { background: #f8f8f8; }
+#libdoc-insert .code .c { color: #408080; font-style: italic } /* Comment */
+#libdoc-insert .code .err { border: 1px solid #FF0000 } /* Error */
+#libdoc-insert .code .k { color: #008000; font-weight: bold } /* Keyword */
+#libdoc-insert .code .o { color: #666666 } /* Operator */
+#libdoc-insert .code .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+#libdoc-insert .code .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+#libdoc-insert .code .cp { color: #BC7A00 } /* Comment.Preproc */
+#libdoc-insert .code .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+#libdoc-insert .code .c1 { color: #408080; font-style: italic } /* Comment.Single */
+#libdoc-insert .code .cs { color: #408080; font-style: italic } /* Comment.Special */
+#libdoc-insert .code .gd { color: #A00000 } /* Generic.Deleted */
+#libdoc-insert .code .ge { font-style: italic } /* Generic.Emph */
+#libdoc-insert .code .gr { color: #FF0000 } /* Generic.Error */
+#libdoc-insert .code .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+#libdoc-insert .code .gi { color: #00A000 } /* Generic.Inserted */
+#libdoc-insert .code .go { color: #888888 } /* Generic.Output */
+#libdoc-insert .code .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+#libdoc-insert .code .gs { font-weight: bold } /* Generic.Strong */
+#libdoc-insert .code .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+#libdoc-insert .code .gt { color: #0044DD } /* Generic.Traceback */
+#libdoc-insert .code .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+#libdoc-insert .code .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+#libdoc-insert .code .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+#libdoc-insert .code .kp { color: #008000 } /* Keyword.Pseudo */
+#libdoc-insert .code .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+#libdoc-insert .code .kt { color: #B00040 } /* Keyword.Type */
+#libdoc-insert .code .m { color: #666666 } /* Literal.Number */
+#libdoc-insert .code .s { color: #BA2121 } /* Literal.String */
+#libdoc-insert .code .na { color: #7D9029 } /* Name.Attribute */
+#libdoc-insert .code .nb { color: #008000 } /* Name.Builtin */
+#libdoc-insert .code .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+#libdoc-insert .code .no { color: #880000 } /* Name.Constant */
+#libdoc-insert .code .nd { color: #AA22FF } /* Name.Decorator */
+#libdoc-insert .code .ni { color: #999999; font-weight: bold } /* Name.Entity */
+#libdoc-insert .code .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+#libdoc-insert .code .nf { color: #0000FF } /* Name.Function */
+#libdoc-insert .code .nl { color: #A0A000 } /* Name.Label */
+#libdoc-insert .code .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+#libdoc-insert .code .nt { color: #008000; font-weight: bold } /* Name.Tag */
+#libdoc-insert .code .nv { color: #19177C } /* Name.Variable */
+#libdoc-insert .code .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+#libdoc-insert .code .w { color: #bbbbbb } /* Text.Whitespace */
+#libdoc-insert .code .mb { color: #666666 } /* Literal.Number.Bin */
+#libdoc-insert .code .mf { color: #666666 } /* Literal.Number.Float */
+#libdoc-insert .code .mh { color: #666666 } /* Literal.Number.Hex */
+#libdoc-insert .code .mi { color: #666666 } /* Literal.Number.Integer */
+#libdoc-insert .code .mo { color: #666666 } /* Literal.Number.Oct */
+#libdoc-insert .code .sb { color: #BA2121 } /* Literal.String.Backtick */
+#libdoc-insert .code .sc { color: #BA2121 } /* Literal.String.Char */
+#libdoc-insert .code .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+#libdoc-insert .code .s2 { color: #BA2121 } /* Literal.String.Double */
+#libdoc-insert .code .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+#libdoc-insert .code .sh { color: #BA2121 } /* Literal.String.Heredoc */
+#libdoc-insert .code .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+#libdoc-insert .code .sx { color: #008000 } /* Literal.String.Other */
+#libdoc-insert .code .sr { color: #BB6688 } /* Literal.String.Regex */
+#libdoc-insert .code .s1 { color: #BA2121 } /* Literal.String.Single */
+#libdoc-insert .code .ss { color: #19177C } /* Literal.String.Symbol */
+#libdoc-insert .code .bp { color: #008000 } /* Name.Builtin.Pseudo */
+#libdoc-insert .code .vc { color: #19177C } /* Name.Variable.Class */
+#libdoc-insert .code .vg { color: #19177C } /* Name.Variable.Global */
+#libdoc-insert .code .vi { color: #19177C } /* Name.Variable.Instance */
+#libdoc-insert .code .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+#libdoc-insert body {
+    margin: 0;
+    padding: 0;
+    font-size: 8pt;
+}
+#libdoc-insert a {
+    text-decoration: none;
+}
+#libdoc-insert #search, #libdoc-insert #open-search {
+    display: none;
+}
+
+#libdoc-insert #javascript-disabled {
+    width: 600px;
+    margin: 100px auto 0 auto;
+    padding: 20px;
+    color: black;
+    border: 1px solid #ccc;
+    background: #eee;
+}
+#libdoc-insert #javascript-disabled h1 {
+    width: 100%;
+    float: none;
+}
+#libdoc-insert #javascript-disabled ul {
+    font-size: 1.2em;
+}
+#libdoc-insert #javascript-disabled li {
+    margin: 0.5em 0;
+}
+#libdoc-insert #javascript-disabled b {
+    font-style: italic;
+}
+
+#libdoc-insert .doc > * {
+    margin: 0.7em 1em 0.1em 1em;
+    padding: 0;
+}
+#libdoc-insert .doc > p, #libdoc-insert .doc > h1, #libdoc-insert .doc > h2, #libdoc-insert .doc > h3, #libdoc-insert .doc > h4 {
+    margin: 0.7em 0 0.1em 0;
+}
+#libdoc-insert .doc > *:first-child {
+    margin-top: 0.1em;
+}
+#libdoc-insert .doc table {
+    border: 1px solid #ccc;
+    background: transparent;
+    border-collapse: collapse;
+    empty-cells: show;
+    font-size: 0.9em;
+}
+#libdoc-insert .doc table th, #libdoc-insert .doc table td {
+    border: 1px solid #ccc;
+    background: transparent;
+    padding: 0.1em 0.3em;
+    height: 1.2em;
+}
+#libdoc-insert .doc table th {
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+#libdoc-insert .doc pre {
+    font-size: 1.1em;
+    letter-spacing: 0.05em;
+    background: #f4f4f4;
+}
+#libdoc-insert .doc code {
+    padding: 0 0.2em;
+    letter-spacing: 0.05em;
+    background: #eee;
+}
+#libdoc-insert .doc li {
+    list-style-position: inside;
+    list-style-type: square;
+}
+#libdoc-insert .doc img {
+    border: 1px solid #ccc;
+}
+#libdoc-insert .doc hr {
+    background: #ccc;
+    height: 1px;
+    border: 0;
+}

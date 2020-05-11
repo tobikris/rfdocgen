@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+<h1>Libs</h1>
+{% for p in paths['lib'] %}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ paths['lib'][p]['folder'] }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">input: {{ paths['lib'][p]['input'] }}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">output: {{ paths['lib'][p]['output'] }}</h6>
+    <a href="{{ url_for('.show', doctype='lib', folder=paths['lib'][p]['folder']) }}" class="card-link">Show
+      Documentation</a>
+  </div>
+</div>
+{% else %}
+<div class="alert alert-info" role="alert">
+  Currently no libs are watched and no docs are served. You can add libs when you start the server.
+</div>
+{% endfor %}
+
+<h1>Tests</h1>
+{% for p in paths['test'] %}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ paths['test'][p]['folder'] }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">input: {{ paths['test'][p]['input'] }}</h6>
+    <h6 class="card-subtitle mb-2 text-muted">output: {{ paths['test'][p]['output'] }}</h6>
+    <a href="{{ url_for('.show', doctype='test', folder=paths['test'][p]['folder']) }}" class="card-link">Show
+      Documentation</a>
+  </div>
+</div>
+{% else %}
+<div class="alert alert-info" role="alert">
+  Currently no tests are watched and no docs are served. You can add tests when you start the server.
+</div>
+{% endfor %}
+{% endblock %}
