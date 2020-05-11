@@ -99,11 +99,11 @@ if __name__ == '__main__':
         if paths['lib']:
             for l in paths['lib']:
                 logger.debug('watching %s' % l)
-                server.watch(l, doc_libs(paths['lib'][l]['output'], paths['lib'][l]['input']))
+                server.watch(paths['lib'][l]['input'], doc_libs(paths['lib'][l]['output'], paths['lib'][l]['input']))
 
         if paths['test']:
             for t in paths['test']:
                 logger.debug('watching %s' % t)
-                server.watch(t, doc_tests(paths['test'][t]['output'], paths['test'][t]['input']))
+                server.watch(paths['test'][t]['input'], doc_tests(paths['test'][t]['output'], paths['test'][t]['input']))
 
         server.serve(host=args.host, port=args.port)
