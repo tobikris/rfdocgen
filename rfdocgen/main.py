@@ -72,16 +72,15 @@ if __name__ == '__main__':
     if args.debug:
         logger.setLevel(logging.DEBUG)
 
-    logger.debug(logging.root.manager.loggerDict)
-    logger.debug(Path(__file__).parent.joinpath('server/static'))
-
     if paths['lib']:
         for l in paths['lib']:
-            doc_libs(paths['lib'][l]['output'], paths['lib'][l]['input'])()
+            if paths['lib'][l]['input'] != '-':
+                doc_libs(paths['lib'][l]['output'], paths['lib'][l]['input'])()
 
     if paths['test']:
         for t in paths['test']:
-            doc_tests(paths['test'][t]['output'], paths['test'][t]['input'])()
+            if paths['test'][t]['input'] != '-':
+                doc_tests(paths['test'][t]['output'], paths['test'][t]['input'])()
 
     if args.server:
         app = Flask(__name__, static_folder=Path(
@@ -98,12 +97,14 @@ if __name__ == '__main__':
 
         if paths['lib']:
             for l in paths['lib']:
-                logger.debug('watching %s' % l)
-                server.watch(paths['lib'][l]['input'], doc_libs(paths['lib'][l]['output'], paths['lib'][l]['input']))
+                if paths['lib'][l]['input'] != '-':
+                    logger.debug('watching %s' % l)
+                    server.watch(paths['lib'][l]['input'], doc_libs(paths['lib'][l]['output'], paths['lib'][l]['input']))
 
         if paths['test']:
             for t in paths['test']:
-                logger.debug('watching %s' % t)
-                server.watch(paths['test'][t]['input'], doc_tests(paths['test'][t]['output'], paths['test'][t]['input']))
+                if paths['test'][t]['input'] != '-':
+                    logger.debug('watching %s' % t)
+                    server.watch(paths['test'][t]['input'], doc_tests(paths['test'][t]['output'], paths['test'][t]['input']))
 
         server.serve(host=args.host, port=args.port)
