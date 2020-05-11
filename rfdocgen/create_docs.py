@@ -1,3 +1,4 @@
+import errno
 import logging
 import os
 import sys
@@ -41,11 +42,25 @@ def is_input_newer(input_path: str, docs_path: str) -> bool:
     return os.stat(input_path).st_mtime > os.stat(docs_path).st_mtime
 
 def remove_old(docs_base: str, input_base: str):
-    for path in Path(docs_base).rglob('**/*'):
-        input_path = str(path).replace(docs_base, input_base).replace('.html', '')
-        if not Path(input_path).exists():
-            logging.getLogger('rfdocgen').debug('removing %s <=> %s: %s' % (str(path), input_path, Path(input_path).exists()))
-            path.unlink()
+    logging.getLogger('rfdocgen').debug('remove_old(%s, %s)' % (docs_base, input_base))
+    if Path(docs_base).is_dir():
+        for path in Path(docs_base).rglob('*'):
+            input_path = str(path).replace(docs_base, input_base).replace('.html', '')
+            if not Path(input_path).exists():
+                remove_old(str(path), str(path).replace(docs_base, input_base))
+        if not Path(input_base).exists():
+            try:
+                Path(docs_base).rmdir()
+            except OSError as ex:
+                if ex.errno == errno.ENOTEMPTY:
+                    logging.getLogger('rfdocgen').debug('not deleting dir %s, not empty' % (str(docs_base)))
+
+    elif os.path.basename(docs_base).endswith('.html'):
+        input_path = docs_base.replace(docs_base, input_base).replace('.html', '')
+        logging.getLogger('rfdocgen').debug('removing file %s' % (docs_base))
+        Path(docs_base).unlink()
+    else:
+        logging.getLogger('rfdocgen').debug('not deleting %s, not a dir or html-file - we probably did\'nt create it' % (str(docs_base)))
 
 def doc_libs(docs_path: str, libs_path: str):
     def doc():

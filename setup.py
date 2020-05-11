@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="rfdocgen",
-    version="0.0.8",
+    version="0.0.9",
     author="Tobias Krischer",
     author_email="tobias.krischer@elyxon.de",
     description="Generate and view Robot Framework Documentation live",
