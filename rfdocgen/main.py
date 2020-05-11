@@ -20,7 +20,10 @@ def split_input_conf(type: str, parameter: str, conf: str) -> (str, dict):
     if not re.match(r"[A-Za-z0-9-_.]+$", sconf[0]):
         raise ValueError('error, %s expects first parameter to be a name (A-Z, a-z, 0-9, -, _, .)", got %s' % (parameter, sconf[0]))
 
-    return sconf[0], dict(folder=sconf[0], input=str(Path(sconf[1]).absolute()), output=str(Path(sconf[2]).absolute()))
+    input_path = sconf[1]
+    if input_path != '-':
+        input_path = str(Path(input_path).absolute())
+    return sconf[0], dict(folder=sconf[0], input=input_path, output=str(Path(sconf[2]).absolute()))
 
 if __name__ == '__main__':
 
