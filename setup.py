@@ -24,7 +24,7 @@ setuptools.setup(
         'Click==7.0',
         'Flask==1.1.1',
         'itsdangerous==1.1.0',
-        'Jinja2==2.10.1',
+        'Jinja2==2.11.3',
         'livereload==2.6.1',
         'MarkupSafe==1.1.1',
         'six==1.12.0',
