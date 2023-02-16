@@ -29,6 +29,6 @@ setuptools.setup(
         'MarkupSafe==1.1.1',
         'six==1.12.0',
         'tornado==6.0.3',
-        'Werkzeug==0.15.5',
+        'Werkzeug==2.2.3',
     ],
 )
