@@ -22,7 +22,7 @@ setuptools.setup(
     python_requires='>=3.6',
     install_requires=[
         'Click==7.0',
-        'Flask==1.1.1',
+        'Flask==2.3.2',
         'itsdangerous==1.1.0',
         'Jinja2==2.11.3',
         'livereload==2.6.1',
